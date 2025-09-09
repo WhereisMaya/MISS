@@ -1,0 +1,7 @@
+# Mindseye Evidence Compiler Requirements
+# No external dependencies required - uses only Python standard library
+
+# Optional dependencies for enhanced functionality:
+# requests>=2.25.0  # For future cloud backup features
+# cryptography>=3.4.0  # For future encryption features
+# psycopg2-binary>=2.8.0  # For future database integration

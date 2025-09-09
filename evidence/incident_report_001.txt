@@ -1,0 +1,47 @@
+INCIDENT REPORT #001
+Date: 2025-01-27
+Time: 14:30
+Location: Ward 3B, St. Mary's Hospital
+
+INCIDENT DESCRIPTION:
+Patient John Smith (DOB: 1985-03-15, MRN: 123456) experienced a fall while attempting to get out of bed unassisted. The patient was found on the floor next to their bed by nursing staff during routine rounds.
+
+IMMEDIATE RESPONSE:
+- Nursing staff immediately assessed the patient
+- Patient was conscious and responsive
+- No visible injuries observed
+- Patient was assisted back to bed
+- Vital signs taken and documented
+
+ASSESSMENT:
+- Patient denied pain or discomfort
+- No signs of head trauma
+- Patient was alert and oriented x3
+- No changes in neurological status
+
+FOLLOW-UP ACTIONS:
+- Incident reported to charge nurse
+- Patient safety assessment completed
+- Family notified of incident
+- Fall risk assessment updated
+- Additional monitoring implemented
+
+PREVENTIVE MEASURES:
+- Bed alarm activated
+- Patient education on call bell usage
+- Increased rounding frequency
+- Family education on fall prevention
+
+DOCUMENTATION:
+- Incident report filed
+- Nursing notes updated
+- Risk management notified
+- Quality assurance review scheduled
+
+REFERENCES:
+- Hospital Policy 4.2.1 - Fall Prevention
+- Patient Safety Protocol 3.1
+- Incident Reporting Guidelines
+
+For more information, visit: https://www.stmaryshospital.com/incident-reporting
+Contact: safety@stmaryshospital.com

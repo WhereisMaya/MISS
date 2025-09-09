@@ -1,0 +1,41 @@
+{
+  "mindseye_config": {
+    "version": "1.0.0",
+    "description": "Mindseye Evidence Compiler Configuration",
+    "default_evidence_root": "/evidence",
+    "default_output_dir": ".",
+    "supported_file_types": [".txt", ".md"],
+    "bubble_settings": {
+      "radius": 28,
+      "fontSize": 8,
+      "textColor": "yellow",
+      "font": "Trebuchet MS",
+      "glow": true,
+      "fixed": true,
+      "static": true,
+      "shape": "circle"
+    },
+    "compilation_settings": {
+      "max_description_length": 500,
+      "enable_url_extraction": true,
+      "enable_image_linking": true,
+      "hash_algorithm": "sha256"
+    },
+    "web_server": {
+      "default_host": "localhost",
+      "default_port": 8080,
+      "enable_cors": true
+    },
+    "logging": {
+      "level": "INFO",
+      "format": "%(asctime)s - %(levelname)s - %(message)s",
+      "file": "compiler.log"
+    },
+    "future_features": {
+      "database_integration": false,
+      "cloud_backup": false,
+      "user_authentication": false,
+      "encryption": false
+    }
+  }
+}

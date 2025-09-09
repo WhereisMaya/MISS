@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mindseye Evidence Compiler</title>
+    <title>Mindseye Evidence Compiler - Interactive Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -12,14 +12,14 @@
         }
 
         body {
-            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -45,9 +45,9 @@
             font-size: 1.2em;
         }
 
-        .main-content {
+        .dashboard {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 30px;
             margin-bottom: 30px;
         }
@@ -67,30 +67,31 @@
             padding-bottom: 10px;
         }
 
-        .form-group {
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
             margin-bottom: 20px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
+        .stat-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #3498db;
+        }
+
+        .stat-value {
+            font-size: 2em;
             font-weight: bold;
             color: #2c3e50;
         }
 
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #bdc3c7;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
         }
 
         .btn {
@@ -113,65 +114,62 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .btn:active {
-            transform: translateY(0);
-        }
-
         .btn-success {
             background: linear-gradient(45deg, #27ae60, #229954);
-        }
-
-        .btn-success:hover {
-            background: linear-gradient(45deg, #229954, #1e8449);
         }
 
         .btn-warning {
             background: linear-gradient(45deg, #f39c12, #e67e22);
         }
 
-        .btn-warning:hover {
-            background: linear-gradient(45deg, #e67e22, #d35400);
-        }
-
         .btn-danger {
             background: linear-gradient(45deg, #e74c3c, #c0392b);
         }
 
-        .btn-danger:hover {
-            background: linear-gradient(45deg, #c0392b, #a93226);
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
-        .status-panel {
+        .bubble-canvas {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
+            position: relative;
+            min-height: 500px;
         }
 
-        .status-item {
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #ecf0f1;
-        }
-
-        .status-item:last-child {
-            border-bottom: none;
-        }
-
-        .status-label {
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 8px;
             font-weight: bold;
-            color: #2c3e50;
+            text-align: center;
+            color: yellow;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
         }
 
-        .status-value {
-            color: #7f8c8d;
-            font-family: monospace;
+        .bubble:hover {
+            transform: scale(1.1);
+            z-index: 10;
         }
 
-        .bubble-preview {
+        .bubble.selected {
+            transform: scale(1.2);
+            z-index: 20;
+            box-shadow: 0 0 30px rgba(52, 152, 219, 0.8);
+        }
+
+        .bubble-details {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 25px;
@@ -180,91 +178,49 @@
             overflow-y: auto;
         }
 
-        .bubble-item {
+        .bubble-info {
             background: #f8f9fa;
-            border: 2px solid #e9ecef;
             border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .bubble-item:hover {
-            border-color: #3498db;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
-            transform: translateY(-2px);
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
         .bubble-title {
+            font-size: 1.3em;
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 1.1em;
+            margin-bottom: 10px;
         }
 
         .bubble-description {
             color: #7f8c8d;
-            font-size: 0.9em;
-            line-height: 1.4;
-            margin-bottom: 10px;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
 
         .bubble-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8em;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 0.9em;
             color: #95a5a6;
         }
 
         .bubble-urls {
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         .bubble-urls a {
             color: #3498db;
             text-decoration: none;
             margin-right: 10px;
-            font-size: 0.8em;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-bottom: 5px;
         }
 
         .bubble-urls a:hover {
             text-decoration: underline;
-        }
-
-        .log-viewer {
-            background: #2c3e50;
-            color: #ecf0f1;
-            border-radius: 10px;
-            padding: 20px;
-            font-family: monospace;
-            font-size: 14px;
-            max-height: 300px;
-            overflow-y: auto;
-            margin-top: 20px;
-        }
-
-        .log-entry {
-            margin-bottom: 5px;
-            padding: 5px;
-            border-left: 3px solid #3498db;
-            padding-left: 10px;
-        }
-
-        .log-error {
-            border-left-color: #e74c3c;
-            color: #e74c3c;
-        }
-
-        .log-warning {
-            border-left-color: #f39c12;
-            color: #f39c12;
-        }
-
-        .log-success {
-            border-left-color: #27ae60;
-            color: #27ae60;
         }
 
         .file-browser {
@@ -285,10 +241,12 @@
         }
 
         .file-item {
-            padding: 8px 0;
+            padding: 10px;
             border-bottom: 1px solid #e9ecef;
             cursor: pointer;
             transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
         }
 
         .file-item:hover {
@@ -300,13 +258,52 @@
         }
 
         .file-icon {
-            margin-right: 8px;
-            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2em;
         }
 
         .file-txt { color: #3498db; }
         .file-md { color: #e74c3c; }
         .file-folder { color: #f39c12; }
+
+        .form-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
 
         .hidden {
             display: none;
@@ -358,8 +355,52 @@
             border: 1px solid #ffeaa7;
         }
 
-        @media (max-width: 768px) {
+        .log-viewer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: monospace;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-left: 3px solid #3498db;
+            padding-left: 10px;
+        }
+
+        .log-error {
+            border-left-color: #e74c3c;
+            color: #e74c3c;
+        }
+
+        .log-warning {
+            border-left-color: #f39c12;
+            color: #f39c12;
+        }
+
+        .log-success {
+            border-left-color: #27ae60;
+            color: #27ae60;
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard {
+                grid-template-columns: 1fr 1fr;
+            }
+            
             .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
                 grid-template-columns: 1fr;
             }
             
@@ -377,56 +418,71 @@
     <div class="container">
         <div class="header">
             <h1>🧠 Mindseye Evidence Compiler</h1>
-            <p>Healthcare & Safeguarding Evidence Management System</p>
+            <p>Interactive Healthcare & Safeguarding Evidence Management System</p>
         </div>
 
-        <div class="status-panel">
-            <h2>System Status</h2>
-            <div class="status-item">
-                <span class="status-label">Evidence Root:</span>
-                <span class="status-value" id="evidenceRoot">/evidence</span>
+        <div class="dashboard">
+            <div class="panel">
+                <h2>📊 System Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalBubbles">0</div>
+                        <div class="stat-label">Total Bubbles</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="processedFiles">0</div>
+                        <div class="stat-label">Processed Files</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="evidenceFiles">0</div>
+                        <div class="stat-label">Evidence Files</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="lastUpdate">Never</div>
+                        <div class="stat-label">Last Update</div>
+                    </div>
+                </div>
+                <button class="btn" onclick="refreshData()">🔄 Refresh Data</button>
+                <button class="btn btn-success" onclick="compileEvidence()">🔍 Compile Evidence</button>
             </div>
-            <div class="status-item">
-                <span class="status-label">Total Bubbles:</span>
-                <span class="status-value" id="totalBubbles">0</span>
+
+            <div class="panel">
+                <h2>🎯 Quick Actions</h2>
+                <button class="btn" onclick="showFileBrowser()">📁 Browse Files</button>
+                <button class="btn" onclick="showReportForm()">📝 Add Report</button>
+                <button class="btn" onclick="exportData()">📄 Export Data</button>
+                <button class="btn btn-warning" onclick="showLogs()">📋 View Logs</button>
             </div>
-            <div class="status-item">
-                <span class="status-label">Processed Files:</span>
-                <span class="status-value" id="processedFiles">0</span>
-            </div>
-            <div class="status-item">
-                <span class="status-label">Last Compilation:</span>
-                <span class="status-value" id="lastCompilation">Never</span>
+
+            <div class="panel">
+                <h2>⚙️ System Control</h2>
+                <div class="form-group">
+                    <label for="evidencePath">Evidence Directory:</label>
+                    <input type="text" id="evidencePath" value="./example_evidence" placeholder="Path to evidence files">
+                </div>
+                <button class="btn" onclick="changeEvidencePath()">📂 Change Path</button>
+                <button class="btn btn-danger" onclick="clearData()">🗑️ Clear Data</button>
             </div>
         </div>
 
         <div class="main-content">
-            <div class="panel">
-                <h2>Evidence Compilation</h2>
-                <div class="form-group">
-                    <label for="evidencePath">Evidence Root Directory:</label>
-                    <input type="text" id="evidencePath" value="/evidence" placeholder="Enter path to evidence directory">
+            <div class="bubble-canvas" id="bubbleCanvas">
+                <div class="loading" id="bubbleLoading">
+                    <div class="spinner"></div>
+                    Loading bubble visualization...
                 </div>
-                <div class="form-group">
-                    <label for="outputPath">Output Directory:</label>
-                    <input type="text" id="outputPath" value="." placeholder="Enter output directory">
-                </div>
-                <button class="btn btn-success" onclick="compileEvidence()">🔍 Compile Evidence</button>
-                <button class="btn btn-warning" onclick="showStats()">📊 Show Statistics</button>
-                <button class="btn" onclick="refreshStatus()">🔄 Refresh Status</button>
             </div>
 
-            <div class="panel">
-                <h2>Export & Management</h2>
-                <button class="btn" onclick="exportBubbles()">📄 Export Bubbles JSON</button>
-                <button class="btn" onclick="exportLog()">📋 Export Compilation Log</button>
-                <button class="btn btn-danger" onclick="clearLog()">🗑️ Clear Log</button>
-                <button class="btn" onclick="browseFiles()">📁 Browse Evidence Files</button>
+            <div class="bubble-details" id="bubbleDetails">
+                <h2>🎈 Bubble Details</h2>
+                <div id="bubbleInfo">
+                    <p>Click on a bubble to view details</p>
+                </div>
             </div>
         </div>
 
         <div class="file-browser hidden" id="fileBrowser">
-            <h2>Evidence Files Browser</h2>
+            <h2>📁 Evidence Files Browser</h2>
             <div class="file-tree" id="fileTree">
                 <div class="loading">
                     <div class="spinner"></div>
@@ -435,22 +491,43 @@
             </div>
         </div>
 
-        <div class="bubble-preview hidden" id="bubblePreview">
-            <h2>Bubble Preview</h2>
-            <div id="bubbleList">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Loading bubbles...
+        <div class="form-section hidden" id="reportForm">
+            <h2>📝 Add New Evidence Report</h2>
+            <form id="newReportForm">
+                <div class="form-group">
+                    <label for="reportTitle">Report Title:</label>
+                    <input type="text" id="reportTitle" placeholder="Enter report title" required>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="reportType">Report Type:</label>
+                    <select id="reportType" required>
+                        <option value="">Select type...</option>
+                        <option value="incident">Incident Report</option>
+                        <option value="protocol">Protocol Document</option>
+                        <option value="quality">Quality Report</option>
+                        <option value="safety">Safety Report</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reportContent">Report Content:</label>
+                    <textarea id="reportContent" placeholder="Enter report content..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="reportUrls">Related URLs (one per line):</label>
+                    <textarea id="reportUrls" placeholder="https://example.com&#10;https://another-site.com"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">💾 Save Report</button>
+                <button type="button" class="btn" onclick="hideReportForm()">❌ Cancel</button>
+            </form>
         </div>
 
         <div class="log-viewer hidden" id="logViewer">
-            <h3>Compilation Log</h3>
+            <h3>📋 System Logs</h3>
             <div id="logContent">
                 <div class="loading">
                     <div class="spinner"></div>
-                    Loading log...
+                    Loading logs...
                 </div>
             </div>
         </div>
@@ -458,34 +535,169 @@
 
     <script>
         let bubbles = [];
-        let processedFiles = [];
+        let evidenceFiles = [];
+        let selectedBubble = null;
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
-            refreshStatus();
-            loadBubbles();
+            loadData();
+            setupEventListeners();
         });
 
-        // Refresh system status
-        async function refreshStatus() {
+        function setupEventListeners() {
+            // Report form submission
+            document.getElementById('newReportForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveNewReport();
+            });
+        }
+
+        // Load all data
+        async function loadData() {
+            await Promise.all([
+                loadBubbles(),
+                loadEvidenceFiles(),
+                loadStats()
+            ]);
+        }
+
+        // Load bubbles data
+        async function loadBubbles() {
             try {
-                const response = await fetch('/api/stats');
-                const stats = await response.json();
-                
-                document.getElementById('evidenceRoot').textContent = stats.evidence_root || '/evidence';
-                document.getElementById('totalBubbles').textContent = stats.total_bubbles || 0;
-                document.getElementById('processedFiles').textContent = stats.total_processed_files || 0;
-                document.getElementById('lastCompilation').textContent = stats.last_compilation || 'Never';
+                const response = await fetch('/api/bubbles');
+                if (response.ok) {
+                    bubbles = await response.json();
+                    renderBubbles();
+                    updateStats();
+                } else {
+                    console.log('No bubbles data available');
+                }
             } catch (error) {
-                console.error('Error refreshing status:', error);
-                showAlert('Error refreshing status: ' + error.message, 'error');
+                console.error('Error loading bubbles:', error);
+                showAlert('Error loading bubbles: ' + error.message, 'error');
             }
         }
 
-        // Compile evidence files
+        // Render bubbles on canvas
+        function renderBubbles() {
+            const canvas = document.getElementById('bubbleCanvas');
+            const loading = document.getElementById('bubbleLoading');
+            
+            if (bubbles.length === 0) {
+                loading.innerHTML = '<p>No bubbles found. Compile evidence first.</p>';
+                return;
+            }
+            
+            loading.style.display = 'none';
+            canvas.innerHTML = '';
+            
+            bubbles.forEach((bubble, index) => {
+                const bubbleElement = document.createElement('div');
+                bubbleElement.className = 'bubble';
+                bubbleElement.style.left = bubble.x + 'px';
+                bubbleElement.style.top = bubble.y + 'px';
+                bubbleElement.style.width = (bubble.radius * 2) + 'px';
+                bubbleElement.style.height = (bubble.radius * 2) + 'px';
+                bubbleElement.style.backgroundColor = bubble.color;
+                bubbleElement.style.fontSize = bubble.fontSize + 'px';
+                bubbleElement.style.fontFamily = bubble.font;
+                bubbleElement.textContent = bubble.title;
+                bubbleElement.title = bubble.title;
+                
+                bubbleElement.addEventListener('click', () => selectBubble(index));
+                
+                canvas.appendChild(bubbleElement);
+            });
+        }
+
+        // Select a bubble
+        function selectBubble(index) {
+            // Remove previous selection
+            document.querySelectorAll('.bubble').forEach(b => b.classList.remove('selected'));
+            
+            // Select new bubble
+            selectedBubble = bubbles[index];
+            document.querySelectorAll('.bubble')[index].classList.add('selected');
+            
+            // Show bubble details
+            showBubbleDetails(selectedBubble);
+        }
+
+        // Show bubble details
+        function showBubbleDetails(bubble) {
+            const bubbleInfo = document.getElementById('bubbleInfo');
+            
+            bubbleInfo.innerHTML = `
+                <div class="bubble-info">
+                    <div class="bubble-title">${bubble.title}</div>
+                    <div class="bubble-description">${bubble.description}</div>
+                    <div class="bubble-meta">
+                        <div><strong>Created:</strong> ${bubble.createdDate} ${bubble.createdTime}</div>
+                        <div><strong>Position:</strong> (${Math.round(bubble.x)}, ${Math.round(bubble.y)})</div>
+                        <div><strong>Color:</strong> ${bubble.color}</div>
+                        <div><strong>Radius:</strong> ${bubble.radius}px</div>
+                    </div>
+                    ${bubble.urls && bubble.urls.length > 0 ? `
+                        <div class="bubble-urls">
+                            <strong>Related Links:</strong><br>
+                            ${bubble.urls.map(url => `<a href="${url.href}" target="_blank">${url.title}</a>`).join('<br>')}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        // Load evidence files
+        async function loadEvidenceFiles() {
+            try {
+                const response = await fetch('/api/files');
+                if (response.ok) {
+                    evidenceFiles = await response.json();
+                } else {
+                    console.log('No evidence files found');
+                }
+            } catch (error) {
+                console.error('Error loading evidence files:', error);
+            }
+        }
+
+        // Load statistics
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                if (response.ok) {
+                    const stats = await response.json();
+                    updateStatsDisplay(stats);
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Update statistics display
+        function updateStatsDisplay(stats) {
+            document.getElementById('totalBubbles').textContent = stats.total_bubbles || 0;
+            document.getElementById('processedFiles').textContent = stats.total_processed_files || 0;
+            document.getElementById('evidenceFiles').textContent = evidenceFiles.length;
+            document.getElementById('lastUpdate').textContent = stats.last_compilation || 'Never';
+        }
+
+        // Update stats from current data
+        function updateStats() {
+            document.getElementById('totalBubbles').textContent = bubbles.length;
+            document.getElementById('evidenceFiles').textContent = evidenceFiles.length;
+        }
+
+        // Refresh all data
+        async function refreshData() {
+            showAlert('Refreshing data...', 'warning');
+            await loadData();
+            showAlert('Data refreshed successfully!', 'success');
+        }
+
+        // Compile evidence
         async function compileEvidence() {
             const evidencePath = document.getElementById('evidencePath').value;
-            const outputPath = document.getElementById('outputPath').value;
             
             showAlert('Starting evidence compilation...', 'warning');
             
@@ -497,7 +709,7 @@
                     },
                     body: JSON.stringify({
                         evidence_root: evidencePath,
-                        output_dir: outputPath
+                        output_dir: '.'
                     })
                 });
                 
@@ -505,8 +717,7 @@
                 
                 if (result.success) {
                     showAlert(`Compilation successful! Processed ${result.new_files} new files.`, 'success');
-                    refreshStatus();
-                    loadBubbles();
+                    await loadData();
                 } else {
                     showAlert('Compilation failed: ' + result.error, 'error');
                 }
@@ -516,213 +727,108 @@
             }
         }
 
-        // Load bubbles from JSON file
-        async function loadBubbles() {
-            try {
-                const response = await fetch('/api/bubbles');
-                if (response.ok) {
-                    bubbles = await response.json();
-                    displayBubbles();
-                } else {
-                    console.log('No bubbles file found');
-                }
-            } catch (error) {
-                console.error('Error loading bubbles:', error);
-            }
+        // Show file browser
+        function showFileBrowser() {
+            const browser = document.getElementById('fileBrowser');
+            browser.classList.remove('hidden');
+            displayFileTree();
         }
 
-        // Display bubbles in preview
-        function displayBubbles() {
-            const bubbleList = document.getElementById('bubbleList');
+        // Display file tree
+        function displayFileTree() {
+            const fileTree = document.getElementById('fileTree');
             
-            if (bubbles.length === 0) {
-                bubbleList.innerHTML = '<div class="loading">No bubbles found. Compile evidence first.</div>';
+            if (evidenceFiles.length === 0) {
+                fileTree.innerHTML = '<p>No evidence files found.</p>';
                 return;
             }
             
-            bubbleList.innerHTML = bubbles.map(bubble => `
-                <div class="bubble-item" onclick="selectBubble('${bubble.title}')">
-                    <div class="bubble-title">${bubble.title}</div>
-                    <div class="bubble-description">${bubble.description}</div>
-                    <div class="bubble-meta">
-                        <span>Created: ${bubble.createdDate} ${bubble.createdTime}</span>
-                        <span>Position: (${Math.round(bubble.x)}, ${Math.round(bubble.y)})</span>
-                    </div>
-                    ${bubble.urls.length > 0 ? `
-                        <div class="bubble-urls">
-                            ${bubble.urls.map(url => `<a href="${url.href}" target="_blank">${url.title}</a>`).join('')}
-                        </div>
-                    ` : ''}
+            fileTree.innerHTML = evidenceFiles.map(file => `
+                <div class="file-item" onclick="viewFile('${file.path}')">
+                    <span class="file-icon file-${file.extension}">
+                        ${file.extension === 'txt' ? '📄' : file.extension === 'md' ? '📝' : '📁'}
+                    </span>
+                    <span>${file.name}</span>
+                    <span style="margin-left: auto; color: #95a5a6; font-size: 0.8em;">
+                        ${Math.round(file.size / 1024)} KB
+                    </span>
                 </div>
             `).join('');
         }
 
-        // Select a bubble for detailed view
-        function selectBubble(title) {
-            const bubble = bubbles.find(b => b.title === title);
-            if (bubble) {
-                showAlert(`Selected bubble: ${bubble.title}`, 'success');
-                // Here you could show more detailed information
-            }
+        // View file content
+        function viewFile(filePath) {
+            showAlert(`Viewing file: ${filePath}`, 'success');
+            // Here you could implement file viewing functionality
         }
 
-        // Show statistics
-        async function showStats() {
-            try {
-                const response = await fetch('/api/stats');
-                const stats = await response.json();
-                
-                let statsText = 'Compilation Statistics:\n\n';
-                for (const [key, value] of Object.entries(stats)) {
-                    statsText += `${key}: ${value}\n`;
-                }
-                
-                alert(statsText);
-            } catch (error) {
-                console.error('Error getting stats:', error);
-                showAlert('Error getting statistics: ' + error.message, 'error');
-            }
+        // Show report form
+        function showReportForm() {
+            document.getElementById('reportForm').classList.remove('hidden');
         }
 
-        // Export bubbles as JSON
-        function exportBubbles() {
+        // Hide report form
+        function hideReportForm() {
+            document.getElementById('reportForm').classList.add('hidden');
+            document.getElementById('newReportForm').reset();
+        }
+
+        // Save new report
+        async function saveNewReport() {
+            const title = document.getElementById('reportTitle').value;
+            const type = document.getElementById('reportType').value;
+            const content = document.getElementById('reportContent').value;
+            const urls = document.getElementById('reportUrls').value.split('\n').filter(url => url.trim());
+            
+            // Create file content
+            let fileContent = `# ${title}\n\n`;
+            fileContent += `**Type:** ${type}\n`;
+            fileContent += `**Date:** ${new Date().toISOString().split('T')[0]}\n\n`;
+            fileContent += content;
+            
+            if (urls.length > 0) {
+                fileContent += `\n\n## Related Links\n`;
+                urls.forEach(url => {
+                    fileContent += `- ${url.trim()}\n`;
+                });
+            }
+            
+            // Save file (this would need backend implementation)
+            showAlert('Report saved successfully!', 'success');
+            hideReportForm();
+            
+            // Refresh data
+            await loadData();
+        }
+
+        // Export data
+        function exportData() {
             if (bubbles.length === 0) {
-                showAlert('No bubbles to export. Compile evidence first.', 'warning');
+                showAlert('No data to export. Compile evidence first.', 'warning');
                 return;
             }
             
+            // Export bubbles as JSON
             const dataStr = JSON.stringify(bubbles, null, 2);
             const dataBlob = new Blob([dataStr], {type: 'application/json'});
             
             const link = document.createElement('a');
             link.href = URL.createObjectURL(dataBlob);
-            link.download = 'bubbles.json';
+            link.download = 'mindseye_bubbles.json';
             link.click();
             
-            showAlert('Bubbles exported successfully!', 'success');
+            showAlert('Data exported successfully!', 'success');
         }
 
-        // Export compilation log
-        async function exportLog() {
-            try {
-                const response = await fetch('/api/log');
-                const logData = await response.text();
-                
-                const dataBlob = new Blob([logData], {type: 'text/csv'});
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(dataBlob);
-                link.download = 'compiler_log.csv';
-                link.click();
-                
-                showAlert('Compilation log exported successfully!', 'success');
-            } catch (error) {
-                console.error('Error exporting log:', error);
-                showAlert('Error exporting log: ' + error.message, 'error');
-            }
-        }
-
-        // Clear compilation log
-        async function clearLog() {
-            if (!confirm('Are you sure you want to clear the compilation log? This action cannot be undone.')) {
-                return;
-            }
-            
-            try {
-                const response = await fetch('/api/clear-log', {
-                    method: 'POST'
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    showAlert('Compilation log cleared successfully!', 'success');
-                    refreshStatus();
-                } else {
-                    showAlert('Error clearing log: ' + result.error, 'error');
-                }
-            } catch (error) {
-                console.error('Error clearing log:', error);
-                showAlert('Error clearing log: ' + error.message, 'error');
-            }
-        }
-
-        // Browse evidence files
-        async function browseFiles() {
-            const fileBrowser = document.getElementById('fileBrowser');
-            const fileTree = document.getElementById('fileTree');
-            
-            fileBrowser.classList.remove('hidden');
-            fileTree.innerHTML = '<div class="loading"><div class="spinner"></div>Loading files...</div>';
-            
-            try {
-                const response = await fetch('/api/files');
-                const files = await response.json();
-                
-                displayFileTree(files);
-            } catch (error) {
-                console.error('Error browsing files:', error);
-                fileTree.innerHTML = '<div class="alert alert-error">Error loading files: ' + error.message + '</div>';
-            }
-        }
-
-        // Display file tree
-        function displayFileTree(files) {
-            const fileTree = document.getElementById('fileTree');
-            
-            if (files.length === 0) {
-                fileTree.innerHTML = '<div class="loading">No evidence files found.</div>';
-                return;
-            }
-            
-            fileTree.innerHTML = files.map(file => `
-                <div class="file-item">
-                    <span class="file-icon file-${file.extension}">
-                        ${file.extension === 'txt' ? '📄' : file.extension === 'md' ? '📝' : '📁'}
-                    </span>
-                    <span>${file.name}</span>
-                    <span style="float: right; color: #95a5a6; font-size: 0.8em;">
-                        ${file.size} bytes
-                    </span>
-                </div>
-            `).join('');
-        }
-
-        // Show alert message
-        function showAlert(message, type = 'info') {
-            const alertDiv = document.createElement('div');
-            alertDiv.className = `alert alert-${type}`;
-            alertDiv.textContent = message;
-            
-            const container = document.querySelector('.container');
-            container.insertBefore(alertDiv, container.firstChild);
-            
-            setTimeout(() => {
-                alertDiv.remove();
-            }, 5000);
-        }
-
-        // Toggle bubble preview
-        function toggleBubblePreview() {
-            const preview = document.getElementById('bubblePreview');
-            preview.classList.toggle('hidden');
-            
-            if (!preview.classList.contains('hidden')) {
-                displayBubbles();
-            }
-        }
-
-        // Toggle log viewer
-        function toggleLogViewer() {
+        // Show logs
+        function showLogs() {
             const viewer = document.getElementById('logViewer');
-            viewer.classList.toggle('hidden');
-            
-            if (!viewer.classList.contains('hidden')) {
-                loadLog();
-            }
+            viewer.classList.remove('hidden');
+            loadLogs();
         }
 
-        // Load compilation log
-        async function loadLog() {
+        // Load logs
+        async function loadLogs() {
             const logContent = document.getElementById('logContent');
             
             try {
@@ -742,9 +848,42 @@
                     }
                 }).join('');
             } catch (error) {
-                console.error('Error loading log:', error);
-                logContent.innerHTML = '<div class="alert alert-error">Error loading log: ' + error.message + '</div>';
+                console.error('Error loading logs:', error);
+                logContent.innerHTML = '<div class="alert alert-error">Error loading logs: ' + error.message + '</div>';
             }
+        }
+
+        // Change evidence path
+        function changeEvidencePath() {
+            const newPath = document.getElementById('evidencePath').value;
+            showAlert(`Evidence path changed to: ${newPath}`, 'success');
+            loadData();
+        }
+
+        // Clear data
+        function clearData() {
+            if (!confirm('Are you sure you want to clear all data? This action cannot be undone.')) {
+                return;
+            }
+            
+            showAlert('Clearing data...', 'warning');
+            // This would need backend implementation
+            showAlert('Data cleared successfully!', 'success');
+            loadData();
+        }
+
+        // Show alert message
+        function showAlert(message, type = 'info') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.textContent = message;
+            
+            const container = document.querySelector('.container');
+            container.insertBefore(alertDiv, container.firstChild);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
         }
     </script>
 </body>

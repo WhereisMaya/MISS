@@ -1,0 +1,97 @@
+MEDICATION ERROR INCIDENT REPORT
+=================================
+
+Incident ID: MED-2025-002
+Date: January 18, 2025
+Time: 09:15
+Location: ICU, Bed 5
+Reporter: Pharmacist Lisa Martinez
+Supervisor: Pharmacy Manager Dr. Robert Kim
+
+PATIENT INFORMATION:
+- Name: James Wilson
+- DOB: July 8, 1965
+- MRN: 456789123
+- Admission Date: January 16, 2025
+- Diagnosis: Post-operative complications, sepsis
+
+INCIDENT DESCRIPTION:
+During morning medication pass, Nurse Jennifer Adams administered 10mg of Morphine instead of the prescribed 5mg to patient James Wilson. The error was discovered during the next scheduled medication pass when the patient appeared more sedated than expected.
+
+ROOT CAUSE ANALYSIS:
+1. Look-alike medication vials (5mg vs 10mg)
+2. Distraction during medication preparation
+3. Incomplete double-checking process
+4. High patient acuity affecting attention to detail
+
+IMMEDIATE RESPONSE:
+- Patient assessment completed immediately
+- Vital signs monitored closely
+- Naloxone prepared but not needed
+- Patient remained stable
+- Incident reported to charge nurse and physician
+
+PATIENT IMPACT:
+- Increased sedation level
+- No respiratory depression
+- No adverse drug reactions
+- Patient recovered without complications
+- Family notified of incident
+
+CORRECTIVE ACTIONS:
+1. Medication administration process reviewed
+2. Additional training scheduled for nursing staff
+3. Medication storage reorganized
+4. Double-checking protocol reinforced
+5. Barcode scanning system audit completed
+
+PREVENTIVE MEASURES:
+- Enhanced medication labeling
+- Improved lighting in medication room
+- Reduced distractions during medication pass
+- Additional staff training on high-alert medications
+- Updated medication administration checklist
+
+DOCUMENTATION:
+- Incident report filed
+- Medication error tracking system updated
+- Root cause analysis completed
+- Corrective action plan implemented
+- Staff education records updated
+
+QUALITY IMPROVEMENT:
+- Medication error rate monitoring
+- Staff competency assessments
+- Process improvement initiatives
+- Technology enhancement evaluation
+- Patient safety culture survey
+
+REGULATORY COMPLIANCE:
+- State board of nursing notified
+- Hospital administration informed
+- Quality assurance review completed
+- Risk management assessment done
+- Legal department consultation
+
+FOLLOW-UP ACTIONS:
+- Weekly medication error reviews
+- Monthly staff education sessions
+- Quarterly process audits
+- Annual competency assessments
+- Continuous quality improvement
+
+REFERENCES:
+- Hospital Policy 5.1.2 - Medication Administration
+- Patient Safety Protocol 4.3
+- Medication Error Prevention Guidelines
+- High-Alert Medication Policy 2.1
+
+CONTACT INFORMATION:
+- Pharmacy Manager: pharmacy@stmaryshospital.com
+- Patient Safety Officer: safety@stmaryshospital.com
+- Quality Assurance: quality@stmaryshospital.com
+
+External Resources:
+- ISMP Medication Safety: https://www.ismp.org
+- FDA Medication Errors: https://www.fda.gov/drugs/medication-errors
+- Joint Commission Medication Management: https://www.jointcommission.org/medication-management

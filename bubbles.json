@@ -1,12 +1,12 @@
 [
   {
-    "title": "incident_report_001",
-    "description": "INCIDENT REPORT #001\nDate: 2025-01-27\nTime: 14:30\nLocation: Ward 3B, St. Mary's Hospital\n\nINCIDENT DESCRIPTION:\nPatient John Smith (DOB: 1985-03-15, MRN: 123456) experienced a fall while attempting to get out of bed unassisted. The patient was found on the floor next to their bed by nursing staff during routine rounds.\n\nIMMEDIATE RESPONSE:\n- Nursing staff immediately assessed the patient\n- Patient was conscious and responsive\n- No visible injuries observed\n- Patient was assisted back to bed\n- Vi...",
-    "x": 526.2631364765718,
-    "y": 139.0980103786125,
-    "vx": -0.2593346306601232,
-    "vy": -0.2557728025924546,
-    "color": "hsl(179.16, 87.7%, 67.6%)",
+    "title": "infection_control_protocol",
+    "description": "# Infection Control Protocol - Version 3.2\n\n## Executive Summary\nThis comprehensive infection control protocol establishes guidelines for preventing and controlling healthcare-associated infections (HAIs) at St. Mary's Hospital. The protocol is based on current evidence-based practices and regulatory requirements.\n\n## Scope and Applicability\n- All healthcare personnel\n- All patient care areas\n- All support services\n- Visitors and contractors\n- Emergency situations\n\n## Core Principles\n\n### 1. Sta...",
+    "x": 569.8351135495727,
+    "y": 111.65384914449079,
+    "vx": -1.8638566497315443,
+    "vy": 0.16935768642828997,
+    "color": "hsl(283.30, 64.4%, 68.8%)",
     "textColor": "yellow",
     "radius": 28,
     "font": "Trebuchet MS",
@@ -20,7 +20,7 @@
     "heightRatio": 1,
     "showPauseBorder": false,
     "createdDate": "2025-09-09",
-    "createdTime": "17:27:14",
+    "createdTime": "18:05:42",
     "goals": 0,
     "flashUntil": 0,
     "goalCooldown": 0,
@@ -28,106 +28,32 @@
     "ballVelocityDecay": 0,
     "attachments": [],
     "urls": [
-      {
-        "href": "https://www.stmaryshospital.com/incident",
-        "title": "www.stmaryshospital.com"
-      }
-    ]
-  },
-  {
-    "title": "quality_assurance_report",
-    "description": "QUALITY ASSURANCE REPORT\nQuarter: Q4 2024\nReport Date: January 15, 2025\nFacility: St. Mary's Hospital\nDepartment: Patient Safety & Quality\n\nEXECUTIVE SUMMARY\nThis quarterly report provides an overview of patient safety metrics, quality indicators, and improvement initiatives implemented during Q4 2024. The report demonstrates our continued commitment to excellence in patient care and safety.\n\nKEY PERFORMANCE INDICATORS\n\n1. PATIENT SAFETY METRICS\n   - Fall Rate: 2.1 per 1000 patient days (Target:...",
-    "x": 277.9344978109758,
-    "y": 535.8772097221306,
-    "vx": -1.0718058476650123,
-    "vy": -0.4111244285390545,
-    "color": "hsl(320.77, 73.6%, 68.4%)",
-    "textColor": "yellow",
-    "radius": 28,
-    "font": "Trebuchet MS",
-    "image": "",
-    "glow": true,
-    "fontSize": 8,
-    "rotation": 0,
-    "fixed": true,
-    "static": true,
-    "shape": "circle",
-    "heightRatio": 1,
-    "showPauseBorder": false,
-    "createdDate": "2025-09-09",
-    "createdTime": "17:27:14",
-    "goals": 0,
-    "flashUntil": 0,
-    "goalCooldown": 0,
-    "ballVelocityBoost": 0,
-    "ballVelocityDecay": 0,
-    "attachments": [],
-    "urls": [
-      {
-        "href": "https://www.jointcommission.org",
-        "title": "www.jointcommission.org"
-      },
-      {
-        "href": "https://www.cms.gov/quality",
-        "title": "www.cms.gov"
-      },
-      {
-        "href": "https://www.ahrq.gov/patientsafety",
-        "title": "www.ahrq.gov"
-      }
-    ]
-  },
-  {
-    "title": "patient_safety_protocol",
-    "description": "# Patient Safety Protocol - Version 2.1\n\n## Overview\nThis document outlines the comprehensive patient safety protocols implemented at St. Mary's Hospital to ensure the highest standards of care and minimize risks to patients.\n\n## Core Principles\n\n### 1. Patient Identification\n- **Two-Patient Identifiers**: Always verify patient identity using at least two identifiers (name, DOB, MRN)\n- **ID Band Verification**: Check ID band before any procedure or medication administration\n- **Time-Out Procedur...",
-    "x": 135.66515049129993,
-    "y": 205.9367297782786,
-    "vx": 0.7187232948868885,
-    "vy": -0.2839421674927456,
-    "color": "hsl(138.35, 80.0%, 60.2%)",
-    "textColor": "yellow",
-    "radius": 28,
-    "font": "Trebuchet MS",
-    "image": "",
-    "glow": true,
-    "fontSize": 8,
-    "rotation": 0,
-    "fixed": true,
-    "static": true,
-    "shape": "circle",
-    "heightRatio": 1,
-    "showPauseBorder": false,
-    "createdDate": "2025-09-09",
-    "createdTime": "17:27:14",
-    "goals": 0,
-    "flashUntil": 0,
-    "goalCooldown": 0,
-    "ballVelocityBoost": 0,
-    "ballVelocityDecay": 0,
-    "attachments": [],
-    "urls": [
-      {
-        "href": "https://www.jointcommission.org",
-        "title": "www.jointcommission.org"
-      },
       {
         "href": "https://www.cdc.gov/infectioncontrol",
         "title": "www.cdc.gov"
       },
       {
-        "href": "https://www.who.int/patientsafety",
+        "href": "https://www.who.int/infection",
         "title": "www.who.int"
+      },
+      {
+        "href": "https://www.shea-online.org",
+        "title": "www.shea-online.org"
+      },
+      {
+        "href": "https://www.apic.org",
+        "title": "www.apic.org"
       }
     ]
   },
   {
-    "title": "quarterly_summary",
-    "description": "# Quarterly Summary Report\n**Q4 2024 - Patient Safety & Quality Initiatives**\n\n## Executive Overview\n\nThis quarterly summary provides a comprehensive overview of our patient safety and quality improvement initiatives during Q4 2024. The report highlights key achievements, challenges, and future directions for our healthcare organization.\n\n## Key Achievements\n\n### 🏆 Safety Milestones\n- **Zero Preventable Deaths**: Achieved zero preventable deaths for the third consecutive quarter\n- **Fall Reducti...",
-    "x": 499.23977382909015,
-    "y": 105.71817239364483,
-    "vx": -1.171388328868995,
-    "vy": -1.754155317364972,
-    "color": "hsl(188.30, 94.0%, 73.4%)",
+    "title": "medication_error_2025_002",
+    "description": "MEDICATION ERROR INCIDENT REPORT\n=================================\n\nIncident ID: MED-2025-002\nDate: January 18, 2025\nTime: 09:15\nLocation: ICU, Bed 5\nReporter: Pharmacist Lisa Martinez\nSupervisor: Pharmacy Manager Dr. Robert Kim\n\nPATIENT INFORMATION:\n- Name: James Wilson\n- DOB: July 8, 1965\n- MRN: 456789123\n- Admission Date: January 16, 2025\n- Diagnosis: Post-operative complications, sepsis\n\nINCIDENT DESCRIPTION:\nDuring morning medication pass, Nurse Jennifer Adams administered 10mg of Morphine ...",
+    "x": 149.0172829605297,
+    "y": 587.4493610868127,
+    "vx": -0.6661358805400583,
+    "vy": 0.5027378877607691,
+    "color": "hsl(358.09, 64.1%, 66.2%)",
     "textColor": "yellow",
     "radius": 28,
     "font": "Trebuchet MS",
@@ -141,7 +67,93 @@
     "heightRatio": 1,
     "showPauseBorder": false,
     "createdDate": "2025-09-09",
-    "createdTime": "17:27:14",
+    "createdTime": "18:05:42",
+    "goals": 0,
+    "flashUntil": 0,
+    "goalCooldown": 0,
+    "ballVelocityBoost": 0,
+    "ballVelocityDecay": 0,
+    "attachments": [],
+    "urls": [
+      {
+        "href": "https://www.ismp.org",
+        "title": "www.ismp.org"
+      },
+      {
+        "href": "https://www.fda.gov/drugs/medication",
+        "title": "www.fda.gov"
+      },
+      {
+        "href": "https://www.jointcommission.org/medication",
+        "title": "www.jointcommission.org"
+      }
+    ]
+  },
+  {
+    "title": "patient_fall_2025_001",
+    "description": "INCIDENT REPORT - PATIENT FALL\n================================\n\nIncident ID: FALL-2025-001\nDate: January 15, 2025\nTime: 14:30\nLocation: Ward 3B, Room 312\nReporter: Nurse Sarah Johnson\nSupervisor: Charge Nurse Michael Chen\n\nPATIENT INFORMATION:\n- Name: Margaret Thompson\n- DOB: March 12, 1948\n- MRN: 789456123\n- Admission Date: January 10, 2025\n- Diagnosis: Post-surgical recovery, hip replacement\n\nINCIDENT DESCRIPTION:\nPatient Margaret Thompson was found on the floor next to her bed at approximate...",
+    "x": 495.21957405026205,
+    "y": 213.87968565489376,
+    "vx": -0.20565007837280636,
+    "vy": 1.5995295209708718,
+    "color": "hsl(43.33, 61.2%, 71.1%)",
+    "textColor": "yellow",
+    "radius": 28,
+    "font": "Trebuchet MS",
+    "image": "",
+    "glow": true,
+    "fontSize": 8,
+    "rotation": 0,
+    "fixed": true,
+    "static": true,
+    "shape": "circle",
+    "heightRatio": 1,
+    "showPauseBorder": false,
+    "createdDate": "2025-09-09",
+    "createdTime": "18:05:42",
+    "goals": 0,
+    "flashUntil": 0,
+    "goalCooldown": 0,
+    "ballVelocityBoost": 0,
+    "ballVelocityDecay": 0,
+    "attachments": [],
+    "urls": [
+      {
+        "href": "https://www.jointcommission.org/standards/fall",
+        "title": "www.jointcommission.org"
+      },
+      {
+        "href": "https://www.cdc.gov/falls/prevention",
+        "title": "www.cdc.gov"
+      },
+      {
+        "href": "https://www.ahrq.gov/professionals/systems/hospital/fallpxtoolkit",
+        "title": "www.ahrq.gov"
+      }
+    ]
+  },
+  {
+    "title": "patient_safety_quarterly_2025_q1",
+    "description": "# Patient Safety Quarterly Report - Q1 2025\n\n## Executive Summary\n\nThis quarterly report presents a comprehensive analysis of patient safety performance at St. Mary's Hospital for the first quarter of 2025. The report highlights key achievements, identifies areas for improvement, and outlines strategic initiatives for the upcoming quarter.\n\n## Key Performance Indicators\n\n### 🎯 Safety Metrics\n| Metric | Q1 2025 | Target | Q4 2024 | Change |\n|--------|---------|--------|---------|--------|\n| Fall ...",
+    "x": 740.0541815895475,
+    "y": 266.488938217125,
+    "vx": 0.4461606146474848,
+    "vy": 1.0330453118510494,
+    "color": "hsl(275.26, 63.9%, 75.5%)",
+    "textColor": "yellow",
+    "radius": 28,
+    "font": "Trebuchet MS",
+    "image": "",
+    "glow": true,
+    "fontSize": 8,
+    "rotation": 0,
+    "fixed": true,
+    "static": true,
+    "shape": "circle",
+    "heightRatio": 1,
+    "showPauseBorder": false,
+    "createdDate": "2025-09-09",
+    "createdTime": "18:05:42",
     "goals": 0,
     "flashUntil": 0,
     "goalCooldown": 0,
@@ -168,6 +180,10 @@
       {
         "href": "https://www.who.int/patientsafety",
         "title": "www.who.int"
+      },
+      {
+        "href": "https://www.leapfroggroup.org",
+        "title": "www.leapfroggroup.org"
       }
     ]
   }

@@ -1,0 +1,83 @@
+INCIDENT REPORT - PATIENT FALL
+================================
+
+Incident ID: FALL-2025-001
+Date: January 15, 2025
+Time: 14:30
+Location: Ward 3B, Room 312
+Reporter: Nurse Sarah Johnson
+Supervisor: Charge Nurse Michael Chen
+
+PATIENT INFORMATION:
+- Name: Margaret Thompson
+- DOB: March 12, 1948
+- MRN: 789456123
+- Admission Date: January 10, 2025
+- Diagnosis: Post-surgical recovery, hip replacement
+
+INCIDENT DESCRIPTION:
+Patient Margaret Thompson was found on the floor next to her bed at approximately 14:30 during routine nursing rounds. The patient had attempted to get out of bed unassisted to use the bathroom, despite being instructed to use the call bell. The patient was alert and responsive when found.
+
+IMMEDIATE ASSESSMENT:
+- Patient was conscious and oriented x3
+- No visible injuries or signs of trauma
+- Patient complained of mild hip discomfort
+- Vital signs: BP 128/78, HR 88, RR 18, O2 Sat 98%
+- No changes in neurological status
+
+RESPONSE ACTIONS:
+1. Patient assisted back to bed by nursing staff
+2. Physical assessment completed
+3. Vital signs documented
+4. Physician notified (Dr. Williams)
+5. X-ray ordered for hip assessment
+6. Pain medication administered (Tylenol 650mg)
+
+FOLLOW-UP MEASURES:
+- Bed alarm activated
+- Patient education reinforced on call bell usage
+- Family notified of incident
+- Fall risk assessment updated to HIGH
+- Increased rounding frequency (every 30 minutes)
+- Physical therapy consultation scheduled
+
+PREVENTIVE ACTIONS:
+- Bed positioned at lowest level
+- Call bell within easy reach
+- Non-slip socks provided
+- Family education on fall prevention
+- Signage posted regarding fall risk
+
+DOCUMENTATION:
+- Incident report filed in hospital system
+- Nursing notes updated
+- Risk management notified
+- Quality assurance review scheduled
+- Patient safety committee notification sent
+
+OUTCOME:
+- X-ray results: No fractures detected
+- Patient discharged as scheduled
+- No adverse effects reported
+- Family satisfied with care provided
+
+LESSONS LEARNED:
+- Need for enhanced patient education on fall prevention
+- Consider earlier physical therapy intervention
+- Review bed alarm effectiveness
+- Update family education materials
+
+REFERENCES:
+- Hospital Policy 4.2.1 - Fall Prevention Protocol
+- Patient Safety Guidelines 3.1
+- Incident Reporting Procedure 2.4
+
+CONTACT INFORMATION:
+- Risk Management: risk@stmaryshospital.com
+- Patient Safety: safety@stmaryshospital.com
+- Quality Assurance: quality@stmaryshospital.com
+
+External Resources:
+- Joint Commission Fall Prevention: https://www.jointcommission.org/standards/fall-prevention
+- CDC Fall Prevention: https://www.cdc.gov/falls/prevention
+- AHRQ Fall Prevention Toolkit: https://www.ahrq.gov/professionals/systems/hospital/fallpxtoolkit

@@ -124,19 +124,22 @@ class MindseyeWebHandler(BaseHTTPRequestHandler):
     def serve_files(self):
         """Serve list of evidence files."""
         try:
-            evidence_root = Path("/evidence")
+            # Try example_evidence first, then fall back to evidence
+            evidence_roots = [Path("example_evidence"), Path("evidence"), Path("/evidence")]
             files = []
             
-            if evidence_root.exists():
-                for file_path in evidence_root.rglob("*"):
-                    if file_path.is_file() and file_path.suffix.lower() in ['.txt', '.md']:
-                        files.append({
-                            'name': file_path.name,
-                            'path': str(file_path.relative_to(evidence_root)),
-                            'size': file_path.stat().st_size,
-                            'extension': file_path.suffix[1:],
-                            'modified': datetime.fromtimestamp(file_path.stat().st_mtime).isoformat()
-                        })
+            for evidence_root in evidence_roots:
+                if evidence_root.exists():
+                    for file_path in evidence_root.rglob("*"):
+                        if file_path.is_file() and file_path.suffix.lower() in ['.txt', '.md']:
+                            files.append({
+                                'name': file_path.name,
+                                'path': str(file_path.relative_to(evidence_root)),
+                                'size': file_path.stat().st_size,
+                                'extension': file_path.suffix[1:],
+                                'modified': datetime.fromtimestamp(file_path.stat().st_mtime).isoformat()
+                            })
+                    break  # Use the first found evidence directory
             
             self.send_json_response(files)
         except Exception as e:

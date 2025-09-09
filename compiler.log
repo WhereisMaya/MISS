@@ -7,3 +7,13 @@
 2025-09-09 17:27:14,557 - INFO - Successfully compiled 4 bubbles to bubbles.json
 2025-09-09 17:27:14,557 - INFO - Processed 4 new files
 2025-09-09 17:27:18,587 - INFO - Loaded 4 previously processed files
+2025-09-09 18:05:42,718 - INFO - Loaded 4 previously processed files
+2025-09-09 18:05:42,718 - INFO - Starting evidence compilation...
+2025-09-09 18:05:42,718 - INFO - Found 4 evidence files
+2025-09-09 18:05:42,718 - INFO - Processing file: protocols/infection_control_protocol.md
+2025-09-09 18:05:42,719 - INFO - Processing file: incidents/medication_error_2025_002.txt
+2025-09-09 18:05:42,719 - INFO - Processing file: incidents/patient_fall_2025_001.txt
+2025-09-09 18:05:42,719 - INFO - Processing file: reports/patient_safety_quarterly_2025_q1.md
+2025-09-09 18:05:42,720 - INFO - Successfully compiled 4 bubbles to bubbles.json
+2025-09-09 18:05:42,720 - INFO - Processed 4 new files
+2025-09-09 18:06:03,185 - INFO - Loaded 8 previously processed files
